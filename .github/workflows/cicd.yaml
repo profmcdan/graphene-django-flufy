@@ -104,7 +104,7 @@ jobs:
       - name: Install pip packages
         run: |
           pip install pip --upgrade
-          pip install poetry tox
+          pip install poetry tox toml
       - name: Bump package version
         run: ./scripts/bump.py --dry-run no
       - name: "Build package - testenv: ${{ matrix.toxenv }}"
