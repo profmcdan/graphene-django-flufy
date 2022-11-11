@@ -22,7 +22,7 @@ VERSION = (0, 1, 0, "final", "")
 
 __version__ = get_version(VERSION)
 
-__all__ = (
+__all__ = [
     "__version__",
     # FIELDS
     "DjangoObjectField",
@@ -43,4 +43,4 @@ __all__ = (
     # DIRECTIVES
     "all_directives",
     "ExtraGraphQLDirectiveMiddleware",
-)
+]

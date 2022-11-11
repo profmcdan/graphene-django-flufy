@@ -9,7 +9,7 @@ from .lookups import (
     TIME_LOOKUPS,
 )
 
-__all__ = (
+__all__ = [
     "ALL_LOOKUPS",
     "BASIC_LOOKUPS",
     "COMMON_LOOKUPS",
@@ -17,4 +17,4 @@ __all__ = (
     "DATETIME_LOOKUPS",
     "DATE_LOOKUPS",
     "TIME_LOOKUPS",
-)
+]

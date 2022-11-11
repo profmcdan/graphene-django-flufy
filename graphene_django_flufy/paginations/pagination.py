@@ -3,12 +3,12 @@ from math import fabs
 
 from graphene import Int, NonNull, String
 
-from graphene_django_extras.paginations.utils import (
+from graphene_django_flufy.paginations.utils import (
     _get_count,
     GenericPaginationField,
     _nonzero_int,
 )
-from graphene_django_extras.settings import graphql_api_settings
+from graphene_django_flufy.settings import graphql_api_settings
 
 __all__ = (
     "LimitOffsetGraphqlPagination",

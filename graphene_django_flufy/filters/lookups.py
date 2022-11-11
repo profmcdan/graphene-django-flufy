@@ -10,7 +10,7 @@ __all__ = (
 )
 
 
-_all_lookups = (
+_all_lookups = [
     "isnull",
     "exact",
     "iexact",
@@ -33,7 +33,7 @@ _all_lookups = (
     "hour",
     "minute",
     "second",
-)
+]
 
 
 ALL_LOOKUPS = _all_lookups

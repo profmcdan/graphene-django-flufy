@@ -8,7 +8,7 @@ from graphql import GraphQLArgument, GraphQLNonNull, GraphQLString, GraphQLInt
 from .base import BaseExtraGraphQLDirective
 from ..utils import to_kebab_case
 
-__all__ = (
+__all__ = [
     "DefaultGraphQLDirective",
     "Base64GraphQLDirective",
     "NumberGraphQLDirective",
@@ -24,7 +24,7 @@ __all__ = (
     "TitleCaseGraphQLDirective",
     "CenterGraphQLDirective",
     "ReplaceGraphQLDirective",
-)
+]
 
 
 class DefaultGraphQLDirective(BaseExtraGraphQLDirective):
