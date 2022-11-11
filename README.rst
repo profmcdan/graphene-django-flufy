@@ -1,5 +1,5 @@
 
-Graphene-Django-Extras
+Graphene-Django-Flufy
 ======================
 |build-status| |coverage-status| |python-support| |license| |code-style| |pypi-downloads|
 
@@ -8,7 +8,7 @@ This package add some extra functionalities to **graphene-django** to facilitate
   2. Allows to define DjangoRestFramework serializers based Mutations.
   3. Allows use Directives on Queries and Fragments.
 
-**NOTE:** Subscription support was moved to `graphene-django-subscriptions <https://github.com/eamigo86/graphene-django-subscriptions>`_
+**NOTE:** Subscription support still sits in `graphene-django-subscriptions <https://github.com/eamigo86/graphene-django-subscriptions>`_
 
 Installation:
 -------------
@@ -17,7 +17,7 @@ For installing graphene-django-extras, just run this command in your shell:
 
 .. code:: python
 
-    pip install "graphene-django-extras"
+    pip install "graphene-django-flufy"
 
 Documentation:
 --------------
@@ -51,8 +51,8 @@ DjangoListObjectType classes pagination definitions on settings.py like this:
 
 .. code:: python
 
-    GRAPHENE_DJANGO_EXTRAS = {
-        'DEFAULT_PAGINATION_CLASS': 'graphene_django_extras.paginations.LimitOffsetGraphqlPagination',
+    GRAPHENE_DJANGO_FLUFY = {
+        'DEFAULT_PAGINATION_CLASS': 'graphene_django_flufy.paginations.LimitOffsetGraphqlPagination',
         'DEFAULT_PAGE_SIZE': 20,
         'MAX_PAGE_SIZE': 50,
         'CACHE_ACTIVE': True,
@@ -67,8 +67,8 @@ DjangoListObjectType classes pagination definitions on settings.py like this:
 .. code:: python
 
     from django.contrib.auth.models import User
-    from graphene_django_extras import DjangoListObjectType, DjangoSerializerType, DjangoObjectType
-    from graphene_django_extras.paginations import LimitOffsetGraphqlPagination
+    from graphene_django_flufy import DjangoListObjectType, DjangoSerializerType, DjangoObjectType
+    from graphene_django_flufy.paginations import LimitOffsetGraphqlPagination
 
     from .serializers import UserSerializer
 
@@ -117,7 +117,7 @@ DjangoListObjectType classes pagination definitions on settings.py like this:
 
 .. code:: python
 
-    from graphene_django_extras import DjangoInputObjectType
+    from graphene_django_flufy import DjangoInputObjectType
 
 
     class UserInput(DjangoInputObjectType):
@@ -137,7 +137,7 @@ You can define traditional mutations that use InputTypes or Mutations based on D
 
     import graphene
     from .serializers import UserSerializer
-    from graphene_django_extras import DjangoSerializerMutation
+    from graphene_django_flufy import DjangoSerializerMutation
     from .types import UserType
     from .input_types import UserInputType
 
@@ -176,7 +176,7 @@ You can define traditional mutations that use InputTypes or Mutations based on D
 .. code:: python
 
     import graphene
-    from graphene_django_extras import DjangoObjectField, DjangoListObjectField, DjangoFilterPaginateListField, DjangoFilterListField, LimitOffsetGraphqlPagination
+    from graphene_django_flufy import DjangoObjectField, DjangoListObjectField, DjangoFilterPaginateListField, DjangoFilterListField, LimitOffsetGraphqlPagination
     from .types import UserType, UserListType, UserModelType
     from .mutations import UserMutation, UserSerializerMutation
 
@@ -235,7 +235,7 @@ config on your settings.py:
     GRAPHENE = {
         'SCHEMA_INDENT': 4,
         'MIDDLEWARE': [
-            'graphene_django_extras.ExtraGraphQLDirectiveMiddleware'
+            'graphene_django_flufy.ExtraGraphQLDirectiveMiddleware'
         ]
     }
 
@@ -247,7 +247,7 @@ you can load like this:
 .. code:: python
 
     # schema.py
-    from graphene_django_extras import all_directives
+    from graphene_django_flufy import all_directives
 
     schema = graphene.Schema(
         query=RootQuery,
@@ -267,7 +267,7 @@ or like this:
 
 .. code:: python
 
-    pip install graphene-django-extras[date]
+    pip install graphene-django-flufy[date]
 
 That's all !!!
 
@@ -512,269 +512,9 @@ You can use this shortcuts too:
 Change Log:
 -----------
 *******
-v0.5.1:
-*******
-1. Update dependencies
-
-*******
-v0.5.0:
-*******
-1. Upgrade to graphene v3
-
-*******
-v0.4.9:
-*******
-1. Upgrade graphene-django dependency to version == 2.6.0.
-
-*******
-v0.4.8:
-*******
-1. Upgrade graphene-django dependency to version == 2.6.0.
-
-*******
-v0.4.6:
-*******
-1. Upgrade graphql-core dependency to version >= 2.2.1.
-2. Upgrade graphene dependency to version >= 2.1.8.
-3. Upgrade graphene-django dependency to version >= 2.5.0.
-4. Upgrade django-filter dependency to version >= 2.2.0.
-5. Fixed bug 'DjangoSerializerOptions' object has no attribute 'interfaces' after update to graphene==2.1.8.
-6. The tests were refactored and added some extra tests for DjangoSerializerType.
-
-*******
-v0.4.5:
-*******
-1. Fixed compatibilities issues to use graphene-django>=2.3.2.
-2. Improved code quality and use Black code format.
-3. Fixed minor bug with "time ago" date directive.
-
-*******
-v0.3.7:
-*******
-1. Improved DjangoListType and DjangoObjectType to share the filterset_class between the two class.
-
-*******
-v0.3.6:
-*******
-1. Improve DjangoSerializerMutation resolvers.
-
-*******
-v0.3.5:
-*******
-1. Fixed minor bug on ExtraGraphQLDirectiveMiddleware.
-2. Fixed error with DRF 3.8 Compatibility.
-3. Updated List's Fields to pass info.context to filterset as request, this allow filtering by request data.
-4. Added new feature to ordering paginated queries.
-
-**************
-v0.3.4-alpha2:
-**************
-1. Fixed minor bug on DjangoListObjectType.
-
-**************
-v0.3.4-alpha1:
-**************
-1. Added filterset_class to the listing types as default filter.
-2. Changed getOne by RetrieveField on DjangoListObjectType.
-
-*******
-v0.3.3:
-*******
-1. Added filterset_class to DjangoObjectType.
-2. Fixed minor bug on factory_types function.
-
-**************
-v0.3.3-alpha1:
-**************
-1. Fixed minor bug on *queryset_factory* function.
-
-*******
-v0.3.2:
-*******
-1. Updated Date directive format function for better string format combinations.
-2. Updated custom Time, Date and DateTime base types to be used with Date directive.
-3. Fixed bug with caching Introspection queries on ExtraGraphQLView.
-
-*******
-v0.3.1:
-*******
-1. Fixed bug with default Date directive format.
-
-*******
-v0.3.0:
-*******
-1. Added Binary graphql type. A BinaryArray is used to convert a Django BinaryField to the string form.
-2. Added 'CACHE_ACTIVE' and 'CACHE_TIMEOUT' config options to GRAPHENE_DJANGO_EXTRAS settings for activate cache queries result and define a expire time. Default values are: CACHE_ACTIVE=False, CACHE_TIMEOUT=300 (5 minutes).
-3. Updated Date directive for use with Django TimeField, DateField, and DateTimeField.
-4. Updated ExtraGraphQLView and AuthenticatedGraphQLView to allow use subscription requests on graphene-django >=2.0
-5. Updated setup dependence to graphene-django>=2.0.
-
-*******
-v0.2.2:
-*******
-1. Fixed performance bug on some queries when request nested ManyToMany fields.
-
-*******
-v0.2.1:
-*******
-1. Fixed bug with default PaginationClass and DjangoFilterPaginateListField.
-
-*******
-v0.2.0:
-*******
-1. Added some useful directives to use on queries and fragments.
-2. Fixed error on DjangoFilterPaginateListField resolve function.
-
-*******
-v0.1.6:
-*******
-1. Fixed bug on create and update function on serializer mutation.
-
-*******
-v0.1.3:
-*******
-1. Fixed some minors bugs.
-
-*******
-v0.1.2:
-*******
-1. Added ok field and errors field to DjangoSerializerType like on DjangoSerializerMutation.
-2. Added possibility of filtering in those queries fields that return a list of objects.
-3. Updated DRF compatibility.
-4. Fixed bug with filters when use global DEFAULT_PAGINATION_CLASS.
-
-*******
-v0.1.1:
-*******
-1. Fixed error with JSONField reference on Django==1.8.x installations.
-
-*******
 v0.1.0:
 *******
-1. Added DjangoSerializerType for quick Django's models types definition (See documentation).
-2. Moved support for Subscriptions to graphene-django-subscriptions packages for incompatibility with graphene-django>=2.0.
-3. Fixed bug on DjangoFilterPaginateListField's pagination.
-
-***************
-v0.1.0-alpha12:
-***************
-1. Added new settings param: MAX_PAGE_SIZE, to use on GRAPHENE_DJANGO_EXTRAS configuration dict for better customize DjangoListObjectType's pagination.
-2. Added support to Django's field: GenericRel.
-3. Improve model's fields calculation for to add all possible related and reverse fields.
-4. Improved documentation translation.
-
-***************
-v0.1.0-alpha11:
-***************
-1. Improved ordering for showed fields on graphqli's IDE.
-2. Added better descriptions for auto generated fields.
-
-***************
-v0.1.0-alpha10:
-***************
-1. Improve converter.py file to avoid create field for auto generate OneToOneField product of an inheritance.
-2. Fixed bug in Emun generation for fields with choices of model inheritance child.
-
-**************
-v0.1.0-alpha9:
-**************
-1. Fixed bug on GenericType and GenericInputType generations for Queries list Type and Mutations.
-
-**************
-v0.1.0-alpha6:
-**************
-1. Fixed with exclude fields and converter function.
-
-**************
-v0.1.0-alpha5:
-**************
-1. Updated to graphene-django>=2.0.
-2. Fixed minor bugs on queryset_builder performance.
-
-**************
-v0.1.0-alpha4:
-**************
-1.  Add **queryset** options to **DjangoListObjectType** Meta class for specify wanted model queryset.
-2.  Add AuthenticatedGraphQLView on graphene_django_extras.views for use 'permission', 'authorization' and 'throttle' classes based on the DRF settings. Special thanks to `@jacobh <https://github.com/jacobh>`_ for this `comment <https://github.com/graphql-python/graphene/issues/249#issuecomment-300068390>`_.
-
-**************
-v0.1.0-alpha3:
-**************
-1. Fixed bug on subscriptions when not specified any field in "data" parameter to bean return on notification message.
-
-**************
-v0.1.0-alpha2:
-**************
-1.  Fixed bug when subscribing to a given action (create, update or delete).
-2.  Added intuitive and simple web tool to test notifications of graphene-django-extras subscription.
-
-**************
-v0.1.0-alpha1:
-**************
-1.  Added support to multiselect choices values for models.CharField with choices attribute, on queries and mutations. Example: Integration with django-multiselectfield package.
-2.  Added support to GenericForeignKey and GenericRelation fields, on queries and mutations.
-3.  Added first approach to support Subscriptions with **Channels**, with subscribe and unsubscribe operations. Using **channels-api** package.
-4.  Fixed minors bugs.
-
-*******
-v0.0.4:
-*******
-1. Fix error on DateType encode.
-
-*******
-v0.0.3:
-*******
-1. Implement custom implementation of DateType for use converter and avoid error on Serializer Mutation.
-
-*******
-v0.0.2:
-*******
-1. Changed dependency of DRF to 3.6.4 on setup.py file, to avoid an import error produced by some changes in new version of DRF=3.7.0 and because DRF 3.7.0 dropped support to Django versions < 1.10.
-
-*******
-v0.0.1:
-*******
-1. Fixed bug on DjangoInputObjectType class that refer to unused interface attribute.
-2. Added support to create nested objects like in `DRF <http://www.django-rest-framework.org/api-guide/serializers/#writable-nested-representations>`, it's valid to SerializerMutation and DjangoInputObjectType, only is necessary to specify nested_fields=True on its Meta class definition.
-3. Added support to show, only in mutations types to create objects and with debug=True on settings, inputs autocomplete ordered by required fields first.
-4. Fixed others minors bugs.
-
-************
-v0.0.1-rc.2:
-************
-1. Make queries pagination configuration is more friendly.
-
-************
-v0.0.1-rc.1:
-************
-1. Fixed a bug with input fields in the converter function.
-
-***************
-v0.0.1-beta.10:
-***************
-1. Fixed bug in the queryset_factory function because it did not always return a queryset.
-
-**************
-v0.0.1-beta.9:
-**************
-1. Remove hard dependence with psycopg2 module.
-2. Fixed bug that prevented use queries with fragments.
-3. Fixed bug relating to custom django_filters module and ordering fields.
-
-**************
-v0.0.1-beta.6:
-**************
-1. Optimizing imports, fix some minors bugs and working on performance.
-
-**************
-v0.0.1-beta.5:
-**************
-1. Repair conflict on converter.py, by the use of get_related_model function with: OneToOneRel, ManyToManyRel and ManyToOneRel.
-
-**************
-v0.0.1-beta.4:
-**************
-1. First commit
+1. Update dependencies
 
 
 .. references-marker
