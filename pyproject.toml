@@ -45,6 +45,7 @@ djangorestframework = "^3.14.0"
 django-filter = "^22.1"
 rx = "^3.2.0"
 graphql-core = "^3.2.3"
+toml = "^0.10.2"
 
 
 [tool.poetry.group.dev.dependencies]
