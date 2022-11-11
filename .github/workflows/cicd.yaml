@@ -13,12 +13,6 @@ jobs:
     strategy:
       matrix:
         include:
-          - python: 3.7
-            django: 4.1
-            toxenv: py37-django41
-          - python: 3.8
-            django: 4.1
-            toxenv: py38-django41
           - python: 3.9
             django: 4.1
             toxenv: py39-django41
