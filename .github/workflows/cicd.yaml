@@ -119,10 +119,11 @@ jobs:
           # Values production 'pypi', testing 'testpypi'
           PYPI_REPOSITORY: pypi
           PYPI_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          # poetry config repositories.$PYPI_REPOSITORY $PYPI_REPOSITORY_URL
+          # poetry publish -r $PYPI_REPOSITORY -u $PYPI_USERNAME
         run: |
-          poetry config repositories.$PYPI_REPOSITORY $PYPI_REPOSITORY_URL
-          poetry config pypi-token.$PYPI_REPOSITORY $PYPI_ACCESS_TOKEN
-          poetry publish -r $PYPI_REPOSITORY -u $PYPI_USERNAME
+          poetry config pypi-token.pypi $PYPI_ACCESS_TOKEN
+          poetry publish
       - name: Create bump commit
         uses: EndBug/add-and-commit@latest
         with:
