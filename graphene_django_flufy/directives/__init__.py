@@ -22,7 +22,7 @@ from .string import (
     ReplaceGraphQLDirective,
 )
 
-all_directives = [
+all_directives = (
     # date
     DateGraphQLDirective,
     # list
@@ -47,7 +47,7 @@ all_directives = [
     TitleCaseGraphQLDirective,
     CenterGraphQLDirective,
     ReplaceGraphQLDirective,
-]
+)
 
 
-all_directives = [d() for d in all_directives] + default_directives
+all_directives = tuple(all_directives) + default_directives
