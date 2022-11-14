@@ -49,5 +49,5 @@ all_directives = (
     ReplaceGraphQLDirective,
 )
 
-
-all_directives = tuple(all_directives) + default_directives
+# all_directives = tuple(all_directives) + default_directives
+all_directives = tuple([d() for d in all_directives]) + default_directives
