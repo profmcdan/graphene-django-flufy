@@ -18,7 +18,7 @@ from .types import (
     DjangoSerializerType,
 )
 
-VERSION = (0, 1, 2, "final", "")
+VERSION = (0, 1, 5, "final", "")
 
 __version__ = get_version(VERSION)
 
